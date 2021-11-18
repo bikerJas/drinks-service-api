@@ -25,4 +25,16 @@ describe("Test tea API endpoint request", () => {
       name: "EarlGrey",
     });
   });
+
+  test("GET /tea should return correct object", async () => {
+    const res = await request(app)
+    .get("/tea")
+    .query({ teaName: "Peppermint" });
+
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toEqual({
+      drinkType: "Tea",
+      name: "Peppermint",
+    });
+  });
 });
