@@ -11,12 +11,36 @@ describe('Test coffee API endpoint request', () =>{
     test('GET /coffee should return correct object', async () => {
         const res = await request(app)
         .get('/coffee')
-        .query({coffeName: 'Latte'});
+        .query({coffeeName: 'Latte'});
 
         expect(res.statusCode).toEqual(200);
         expect(res.body).toEqual({
             drinkType: 'Coffee',
             name: 'Latte',
+        });
+    });
+
+    test('GET /coffee should return correct object when not Latte', async () => {
+        const res = await request(app)
+        .get('/coffee')
+        .query({coffeeName: 'Cappuccino'});
+
+        expect(res.statusCode).toEqual(200);
+        expect(res.body).toEqual({
+            drinkType: 'Coffee',
+            name: 'Cappuccino',
+        });
+    });
+
+    test('GET /coffee should return correct object when not Latte', async () => {
+        const res = await request(app)
+        .get('/coffee')
+        .query({coffeeName: 'Caffe Mocha'});
+
+        expect(res.statusCode).toEqual(200);
+        expect(res.body).toEqual({
+            drinkType: 'Coffee',
+            name: 'Caffe Mocha',
         });
     });
 });
